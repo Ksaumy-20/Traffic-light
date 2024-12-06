@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff); /* Gradient background */
+        }
+        .traffic-light {
+            width: 100px;
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+        }
+        .light {
+            width: 60px;
+            height: 60px;
+            background-color: rgb(128, 128, 128);
+            border-radius: 50%;
+            margin: 0 auto;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .red {
+            background-color: red;
+        }
+        .yellow {
+            background-color: yellow;
+        }
+        .green {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="traffic-light">
+        <div class="light" id="red-light"></div>
+        <div class="light" id="yellow-light"></div>
+        <div class="light" id="green-light" draggable="true"></div>
+    </div>
+
+    <script>
+        const redLight = document.getElementById("red-light");
+        const yellowLight = document.getElementById("yellow-light");
+        const greenLight = document.getElementById("green-light");
+
+        function resetLights() {
+            redLight.classList.remove("red");
+            yellowLight.classList.remove("yellow");
+            greenLight.classList.remove("green");
+        }
+
+        
+        redLight.addEventListener("click", () => {
+            resetLights();
+            redLight.classList.add("red");
+        });
+
+        
+        yellowLight.addEventListener("dblclick", () => {
+            resetLights();
+            yellowLight.classList.add("yellow");
+        });
+
+        
+        greenLight.addEventListener("dragstart", () => {
+            resetLights();
+            greenLight.classList.add("green");
+        });
+
+        
+        document.body.addEventListener("dragover", (e) => {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
